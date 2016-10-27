@@ -1,11 +1,14 @@
 import React from 'react';
 import PokemonIndexItem from './pokemon_index_item';
 
-const PokemonIndex = ({pokemon}) => {
+const PokemonIndex = ({children, pokemon}) => {
   return (
-    <ul>
-      {pokemon.map( (pk, idx) => (<PokemonIndexItem key={pk.id} pokemon={pk}/>))}
-    </ul>
+    <div className="pokedex">
+      <ul className="pokemonList">
+        {pokemon.map( (pk, idx) => (<PokemonIndexItem key={pk.id} pokemon={pk}/>))}
+      </ul>
+      {children}
+    </div>
   );
 };
 

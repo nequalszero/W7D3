@@ -11,8 +11,13 @@ const Root = ({ store }) => {
     store.dispatch(requestAllPokemon());
   };
 
-  const requestOnSingle = () => {
-    store.dispatch(requestAPokemon());
+  const requestOnSingle = (nextState) => {
+    if (nextState) {
+      let id = nextState.params.pokemonId;
+      store.dispatch(requestAPokemon(id));
+    } else {
+      return;
+    }
   };
   return (
     <Provider store={store}>

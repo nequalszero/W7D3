@@ -12,8 +12,9 @@ export const requestAllPokemon = () => ({
   type: REQUEST_ALL_POKEMON
 });
 
-export const requestAPokemon = () => ({
-  type: REQUEST_A_POKEMON
+export const requestAPokemon = (id) => ({
+  type: REQUEST_A_POKEMON,
+  id
 });
 
 export const receiveAPokemon = (pokemonDetail) => ({

@@ -1,8 +1,8 @@
-import { fetchAllPokemon, fetchAPokemon } from '../util/api_util';
-import { REQUEST_ALL_POKEMON, receiveAllPokemon, REQUEST_A_POKEMON, receiveAPokemon}
-    from '../actions/pokemon_actions';
+import { fetchAllPokemon, fetchAPokemon, createPokemon } from '../util/api_util';
+import { REQUEST_ALL_POKEMON, receiveAllPokemon, REQUEST_A_POKEMON, receiveAPokemon, CREATE_POKEMON, receiveNewPokemon } from '../actions/pokemon_actions';
 
 const PokemonMiddleware = ({ dispatch }) => next => action => {
+  console.log(action);
   switch(action.type) {
     case REQUEST_ALL_POKEMON:
       const fetchAllSuccess = pokemon => dispatch(receiveAllPokemon(pokemon));
@@ -12,6 +12,11 @@ const PokemonMiddleware = ({ dispatch }) => next => action => {
       const fetchASuccess = pokemonDetail => dispatch(receiveAPokemon(pokemonDetail));
       const fetchAError = e => alert(e);
       fetchAPokemon(fetchASuccess, fetchAError, action.id);
+      return next(action);
+    case CREATE_POKEMON:
+      const createPokeSuccess = winstonPersonalInfo => dispatch(receiveNewPokemon(winstonPersonalInfo));
+      const createPokeError = e => alert(e);
+      createPokemon(createPokeSuccess, createPokeError, action.pokeInfo);
       return next(action);
     default:
       return next(action);
